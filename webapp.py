@@ -8,7 +8,11 @@ def render_main():
 
 @app.route("/response")
 def render_response():
-    
-    
+    color = request.args["color"]
+    if color == "blue":
+        reply = "That is also my favorite color."
+    else:
+        reply = "That color sucks"
+    return render template("response.html", response = reply)
 if __name__=="__main__":
     app.run(debug=False, port=54321)
