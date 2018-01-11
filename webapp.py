@@ -7,11 +7,23 @@ def render_main():
     return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
- def login():
+    def login():
      if request.method == 'POST':
         do_the_login()
      else:
         show_the_login_form()
+        
+@app.route('/login', methods=['POST', 'GET'])
+    def login():
+        error = None
+        if request.method == 'POST':
+            if valid_login(request.form['username'], request.form['password']):
+                return log_the_user_in(request.form['username'])
+            else:
+                error = 'Invalid username/password'
+ # the code below is executed if the request method
+ # was GET or the credentials were invalid
+    return render_template('login.html', error=error)
 
 @app.route("/response")
 def render_response():
