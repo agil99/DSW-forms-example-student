@@ -24,7 +24,7 @@ def render_main():
 @app.route("/response")
 def render_response():
     color = request.args["color"]
-    if request.method == 'post':
+    if request.method == 'POST':
         if color == "blue":
             reply = "That is also my favorite color."
         else:
