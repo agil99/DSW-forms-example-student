@@ -13,6 +13,7 @@ def render_main():
         else:
             show_the_login_form()
         
+"""
 @app.route('/login', methods=['POST', 'GET'])
     def login():
         error = None
@@ -21,6 +22,7 @@ def render_main():
                 return log_the_user_in(request.form['username'])
             else:
                 error = 'Invalid username/password'
+"""
  # the code below is executed if the request method
  # was GET or the credentials were invalid
     return render_template('login.html', error=error)
@@ -28,10 +30,12 @@ def render_main():
 @app.route("/response")
 def render_response():
     color = request.args["color"]
-    if color == "blue":
-        reply = "That is also my favorite color."
-    else:
-        reply = "That color sucks"
+    if request.method == 'post':
+        if color == "blue":
+            reply = "That is also my favorite color."
+        else:
+            reply = "That color sucks"
     return render_template("response.html", response = reply)
+
 if __name__=="__main__":
     app.run(debug=False, port=54321)
