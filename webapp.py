@@ -29,6 +29,8 @@ def render_response():
             reply = "That is also my favorite color."
         else:
             reply = "That color sucks"
+    else:
+        reply = "Sorry, this information is private."
     return render_template("response.html", response = reply)
 
 if __name__=="__main__":
